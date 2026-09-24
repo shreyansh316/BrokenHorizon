@@ -1,16 +1,12 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://c6y7xvibtgax"]
 
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
-size = Vector3(50, 1, 50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
-albedo_color = Color(0.2, 0.25, 0.3, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_floor"]
-material = SubResource("StandardMaterial3D_floor")
-size = Vector3(50, 1, 50)
+[ext_resource type="PackedScene" uid="uid://caufqxuioucxr" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://c6v2jpm7yqoxd" path="res://scenes/target_dummy.tscn" id="2_dummy"]
+[ext_resource type="PackedScene" uid="uid://df7s0y5baxf3e" path="res://scenes/steel_target.tscn" id="3_steel"]
+[ext_resource type="PackedScene" uid="uid://b1enemy827xh0" path="res://scenes/enemy.tscn" id="4_enemy"]
+[ext_resource type="PackedScene" uid="uid://cbarr841xc91" path="res://scenes/cover_barrier.tscn" id="5_barrier"]
+[ext_resource type="PackedScene" uid="uid://ccrate714xb82" path="res://scenes/cover_crate_stack.tscn" id="6_crates"]
+[ext_resource type="PackedScene" uid="uid://cammobox812x" path="res://scenes/ammo_box.tscn" id="7_ammo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.35, 0.55, 0.85, 1)
@@ -24,6 +20,17 @@ background_mode = 2
 sky = SubResource("Sky_env")
 ambient_light_source = 3
 tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(60, 1, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.18, 0.22, 0.26, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+material = SubResource("StandardMaterial3D_floor")
+size = Vector3(60, 1, 60)
 
 [node name="Main" type="Node3D"]
 
@@ -44,4 +51,61 @@ shape = SubResource("BoxShape3D_floor")
 mesh = SubResource("BoxMesh_floor")
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="ShootingRange" type="Node3D" parent="."]
+
+[node name="DummyClose" parent="ShootingRange" instance=ExtResource("2_dummy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -7.0)
+
+[node name="DummyMid" parent="ShootingRange" instance=ExtResource("2_dummy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.0)
+
+[node name="DummyFar" parent="ShootingRange" instance=ExtResource("2_dummy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -20.0)
+
+[node name="SteelLeft" parent="ShootingRange" instance=ExtResource("3_steel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0, -10.0)
+
+[node name="SteelCenter" parent="ShootingRange" instance=ExtResource("3_steel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, -16.0)
+
+[node name="SteelRight" parent="ShootingRange" instance=ExtResource("3_steel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0, -16.0)
+
+[node name="SteelFarRight" parent="ShootingRange" instance=ExtResource("3_steel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 0, -12.0)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="EnemyAlpha" parent="Enemies" instance=ExtResource("4_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="EnemyBeta" parent="Enemies" instance=ExtResource("4_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -10)
+
+[node name="CoverObstacles" type="Node3D" parent="."]
+
+[node name="BarrierLeft" parent="CoverObstacles" instance=ExtResource("5_barrier")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -4.5, 0, -4.5)
+
+[node name="BarrierRight" parent="CoverObstacles" instance=ExtResource("5_barrier")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4.5, 0, -5.0)
+
+[node name="BarrierCenter" parent="CoverObstacles" instance=ExtResource("5_barrier")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.5)
+
+[node name="CratesLeft" parent="CoverObstacles" instance=ExtResource("6_crates")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7.0, 0, -3.5)
+
+[node name="CratesRight" parent="CoverObstacles" instance=ExtResource("6_crates")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 6.5, 0, -7.5)
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="AmmoBox1" parent="Pickups" instance=ExtResource("7_ammo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0, -3.0)
+
+[node name="AmmoBox2" parent="Pickups" instance=ExtResource("7_ammo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, -6.0)
+

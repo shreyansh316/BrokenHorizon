@@ -1,0 +1,173 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5v8684vpy3ox"]
+
+[ext_resource type="Script" path="res://scripts/touch_controls.gd" id="1_touch"]
+[ext_resource type="Script" path="res://scripts/virtual_joystick.gd" id="2_joy"]
+[ext_resource type="Script" path="res://scripts/touch_button.gd" id="3_btn"]
+
+[node name="TouchControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_touch")
+
+[node name="LeftZone" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -210.0
+offset_right = 210.0
+offset_bottom = -30.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Joystick" type="Control" parent="LeftZone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_joy")
+
+[node name="RightZone" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LookArea" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -700.0
+offset_top = 80.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="BtnFire" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -140.0
+offset_right = -50.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_btn")
+label_text = "FIRE"
+button_radius = 40.0
+primary_color = Color(0.9, 0.25, 0.2, 0.65)
+active_color = Color(1, 0.4, 0.1, 0.95)
+
+[node name="BtnAim" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -120.0
+offset_right = -155.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_btn")
+label_text = "AIM"
+is_toggle = true
+button_radius = 32.0
+primary_color = Color(0.15, 0.55, 0.85, 0.65)
+active_color = Color(0.1, 0.8, 1, 0.95)
+
+[node name="BtnJump" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -230.0
+offset_right = -50.0
+offset_bottom = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_btn")
+label_text = "JUMP"
+button_radius = 28.0
+primary_color = Color(0.2, 0.7, 0.4, 0.65)
+active_color = Color(0.4, 1, 0.6, 0.95)
+
+[node name="BtnSprint" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -205.0
+offset_right = -130.0
+offset_bottom = -145.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_btn")
+label_text = "RUN"
+is_toggle = true
+button_radius = 28.0
+primary_color = Color(0.7, 0.5, 0.15, 0.65)
+active_color = Color(1, 0.8, 0.2, 0.95)
+
+[node name="BtnHolster" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -180.0
+offset_right = -210.0
+offset_bottom = -130.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_btn")
+label_text = "GUN"
+button_radius = 24.0
+primary_color = Color(0.4, 0.35, 0.5, 0.65)
+active_color = Color(0.7, 0.6, 0.9, 0.95)
+
+[node name="BtnBackpack" type="Control" parent="RightZone"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -120.0
+offset_right = -270.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_btn")
+label_text = "BAG"
+button_radius = 24.0
+primary_color = Color(0.35, 0.45, 0.3, 0.65)
+active_color = Color(0.6, 0.8, 0.5, 0.95)
