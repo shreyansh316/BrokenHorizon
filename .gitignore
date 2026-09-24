@@ -1,0 +1,20 @@
+﻿# Godot 4+ cache and engine internals
+.godot/
+*.translation
+
+# Build outputs & export configs
+/export_presets.cfg
+/export/
+*.apk
+*.aab
+*.exe
+*.zip
+
+# IDE configurations
+.vscode/
+.idea/
+
+# OS-generated metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
