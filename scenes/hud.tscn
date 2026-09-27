@@ -1,0 +1,239 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp64yhx0cskm"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://scripts/reticle_drawer.gd" id="2_reticle"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hud")
+
+[node name="Reticle" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_reticle")
+
+[node name="HitMarker" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WeaponPanel" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -105.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="WeaponLabel" type="Label" parent="WeaponPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "TACTICAL PISTOL"
+horizontal_alignment = 2
+
+[node name="AmmoLabel" type="Label" parent="WeaponPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1.0, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "12 / 36"
+horizontal_alignment = 2
+
+[node name="StatusLabel" type="Label" parent="WeaponPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "HOLSTERED"
+horizontal_alignment = 2
+
+[node name="HurtFlash" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.95, 0.05, 0.05, 0.3)
+
+[node name="HealthPanel" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 240.0
+offset_bottom = 66.0
+mouse_filter = 2
+
+[node name="HealthLabel" type="Label" parent="HealthPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "VITALS: 100 / 100"
+
+[node name="HealthBar" type="ProgressBar" parent="HealthPanel"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="ChallengePanel" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 16.0
+offset_right = 170.0
+offset_bottom = 110.0
+grow_horizontal = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="TimerLabel" type="Label" parent="ChallengePanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1.0, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "DRILL: 60.0s"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="ChallengePanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "SCORE: 000,000"
+horizontal_alignment = 1
+
+[node name="ComboHBox" type="HBoxContainer" parent="ChallengePanel"]
+layout_mode = 2
+alignment = 1
+
+[node name="ComboLabel" type="Label" parent="ChallengePanel/ComboHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 14
+text = "x1.0 COMBO"
+
+[node name="ComboBar" type="ProgressBar" parent="ChallengePanel/ComboHBox"]
+custom_minimum_size = Vector2(100, 8)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+value = 0.0
+show_percentage = false
+
+[node name="StatsHBox" type="HBoxContainer" parent="ChallengePanel"]
+layout_mode = 2
+alignment = 1
+
+[node name="AccuracyLabel" type="Label" parent="ChallengePanel/StatsHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "ACC: 100.0%  |"
+
+[node name="HitsLabel" type="Label" parent="ChallengePanel/StatsHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = " HITS: 0 / 0"
+
+[node name="DrillSummaryCard" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -120.0
+offset_right = 180.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="DrillSummaryCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="DrillSummaryCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "TACTICAL DRILL COMPLETE"
+horizontal_alignment = 1
+
+[node name="RankLabel" type="Label" parent="DrillSummaryCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1.0, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 48
+text = "S RANK"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="DrillSummaryCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "FINAL SCORE: 0"
+horizontal_alignment = 1
+
+[node name="FinalAccuracyLabel" type="Label" parent="DrillSummaryCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "ACCURACY: 0.0% (0 HITS)"
+horizontal_alignment = 1
+
+[node name="RestartHint" type="Label" parent="DrillSummaryCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = "Press [T] to Restart Drill"
+horizontal_alignment = 1
+
+[node name="ControlsHint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -75.0
+offset_right = 360.0
+offset_bottom = -15.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 0.7)
+theme_override_font_sizes/font_size = 13
+text = "RMB: Aim | LMB: Fire / Combo | R: Reload
+T: Drill | 1: Holster | 2: Backpack"
+
+

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6v2jpm7yqoxd"]
+
+[ext_resource type="Script" path="res://scripts/target_dummy.gd" id="1_dummy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hit"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_base"]
+top_radius = 0.45
+bottom_radius = 0.5
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_base"]
+albedo_color = Color(0.2, 0.22, 0.25, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_torso"]
+radius = 0.25
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_torso"]
+albedo_color = Color(0.85, 0.4, 0.15, 1)
+roughness = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+radius = 0.18
+height = 0.36
+
+[node name="TargetDummy" type="StaticBody3D"]
+script = ExtResource("1_dummy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_hit")
+
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
+mesh = SubResource("CylinderMesh_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_base")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+
+[node name="TorsoMesh" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CapsuleMesh_torso")
+surface_material_override/0 = SubResource("StandardMaterial3D_torso")
+
+[node name="HeadMesh" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+mesh = SubResource("SphereMesh_head")
+surface_material_override/0 = SubResource("StandardMaterial3D_torso")
